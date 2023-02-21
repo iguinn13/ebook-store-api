@@ -5,10 +5,11 @@ import { UpdateBookDTO } from './dtos/update-book-dto';
 
 import { Book } from './schemas/book.schema';
 import { BookRepository } from './book.repository';
+import { IBookRepository } from './interfaces/repository.interface';
 
 @Injectable()
 export class BookService {
-    constructor(@Inject(BookRepository) private readonly bookRepository: BookRepository) {}
+    constructor(@Inject(BookRepository) private readonly bookRepository: IBookRepository) {}
 
     async create(createBookDTO: CreateBookDTO): Promise<void> {
         if (!this.validatePayload(createBookDTO)) {
